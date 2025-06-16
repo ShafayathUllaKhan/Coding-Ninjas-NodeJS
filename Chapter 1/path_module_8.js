@@ -10,7 +10,7 @@ const filepath = path.join('src','home','data1.txt');
 const filepathresolve = path.resolve('src','home','data1.txt');
 console.log(filepath);// src\home\data1.txt --> windows
 console.log(filepath);// src/home/data1.txt --> mac
-console.log(filepathresolve);
+console.log(filepathresolve); // absolute path like from start to end location
 
 // with join
 fs.readFile(filepath,(err,data)=>{

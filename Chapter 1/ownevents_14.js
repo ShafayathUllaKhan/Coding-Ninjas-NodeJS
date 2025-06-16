@@ -23,3 +23,4 @@ userEvent.addListener('postCreated', updateTimeline);
 
 
 userEvent.createPost('This is my first post');
+

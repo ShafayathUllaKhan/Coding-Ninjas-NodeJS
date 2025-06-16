@@ -2,6 +2,7 @@
 
 // import http
 
+const { prototype } = require('events');
 const http = require('http');
 
 const server = http.createServer((req,res)=>{
