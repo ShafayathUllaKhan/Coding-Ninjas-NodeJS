@@ -1,0 +1,44 @@
+index.js
+controller product js
+model product js
+
+
+ejs npm i ejs --> after installing set the ejs
+
+
+server.set('viewengine','ejs');
+server.set('views',path.join(path.resolve(),'src','views'))
+
+
+layouts npm i express-ejs-layouts--> after installing set the ejs
+import ejsLayouts from 'express-ejs-layouts'
+server.use(ejsLayouts)
+
+to get req.body use
+server.use(express.urlencoded({extended : true}))
+
+validation 
+you can use in controller
+you can create middleware
+you can install third party validator or package for validation
+
+npm i express-validator
+
+create rules 
+const rules = [
+        body('name').notEmpty().withMessage('Name is required'),
+        body('price').isFloat({gt:0}).withMessage('Price should '),
+        body('imageUrl').isURL().withMessage('Invalid url')
+    ];
+
+// 2. run those rules.
+    await Promise.all(rules.map(rules => rules.run(req)));
+    
+// 3. check if there are any errors after running the rules.
+    var ValidationErors = validationResult(req);
+
+ if(!ValidationErors.isEmpty()){
+            return res.render('new-product',{errorMessage : ValidationErors.array()[0].msg});
+        }
+
+// updating product
