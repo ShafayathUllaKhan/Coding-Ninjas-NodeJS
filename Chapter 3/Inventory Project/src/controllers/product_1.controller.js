@@ -6,7 +6,6 @@ export default class ProductController{
        // console.log(path.resolve());// note resolve function will give you the full file location of file from which you start excuting
 
        let products = ProductModel.get();
-       console.log(products);
         // return res.sendFile(path.join(path.resolve(), 'src','views', 'product.html'));
         res.render("product",{products:products})// this {} will call the middleware server.use(ejsLayouts); this middleware will call layout and there body will call product view and browser will take as one page only but in server there are two files layout and product thats what view engine and express does
     }
@@ -38,15 +37,17 @@ export default class ProductController{
         //     return res.render('new-product',{errorMessage : errors[0]});
         // }
         // controller job is to just send the response by reciving request these will break the rule of single responsibility
-        ProductModel.addProduct(req.body);
+        const {name,desc,price} = req.body;
+        const imageUrl = "images/" + req.file.filename;
+        ProductModel.addProduct(name,desc,price,imageUrl);
         let products = ProductModel.get();
+        console.log(products);
         return res.render('product',{products:products})
     }
 
     getUpdateProductView(req,res,next){
         // 1. if product exists the return view
         const {id} = req.params;
-      
         const productFound = ProductModel.getById(id);
         if(productFound){
             res.render('update-product',{product: productFound, errorMessage:null});
@@ -58,8 +59,10 @@ export default class ProductController{
     }
 
     postUpdateProduct(req,res){
-        
-        ProductModel.update(req.body);
+        const {name,desc,price,id} = req.body;
+        const imageUrl = "images/" + req.file.filename;
+        console.log(imageUrl);
+        ProductModel.update(name,desc,price,imageUrl,id);
         let products = ProductModel.get();
         return res.render('product',{products:products})
     }

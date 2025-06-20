@@ -42,3 +42,119 @@ const rules = [
         }
 
 // updating product
+
+// file upload for image from file manager
+
+1. use third party library multer
+2. changes in view
+<input type="file" class="form-control" id="imageUrl" name="imageUrl" accept="images/*">
+
+<form action="/" method="post" enctype="multipart/form-data">
+
+
+3. middleware to handle files
+4. Apply that middleware
+5. Update controller to update urls of images
+
+ body('imageUrl').custom((value,{req})=>{
+            if(!req.file){
+                throw new Error("Invalid Image")
+            }
+            return true;
+        })
+
+ const {name,desc,price} = req.body;
+        const imageUrl = "images/" + req.file.filename;
+
+
+// sessions
+
+server --> sessions
+client --> cookies
+
+http -> stateless
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+steps for creating or practice project
+
+1. first create a server
+2. create folder structure src in src mvc
+3. create a model using class with constructor and array
+4. create a layout and install ejs and the express ejs layout

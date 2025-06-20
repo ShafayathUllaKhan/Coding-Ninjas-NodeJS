@@ -32,7 +32,13 @@ export async function validateRequest(req,res,next){
     const rules = [
         body('name').notEmpty().withMessage('Name is required'),
         body('price').isFloat({gt:0}).withMessage('Price should '),
-        body('imageUrl').isURL().withMessage('Invalid url')
+        body('imageUrl').custom((value,{req})=>{
+            if(!req.file){
+                throw new Error("Invalid Image")
+            }
+            return true;
+        })
+        // body('imageUrl').isURL().withMessage('Invalid url')
     ];
     // 2. run those rules.
     await Promise.all(rules.map(rules => rules.run(req)));
