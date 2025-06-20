@@ -7,12 +7,12 @@ export default class ProductController{
 
        let products = ProductModel.get();
         // return res.sendFile(path.join(path.resolve(), 'src','views', 'product.html'));
-        res.render("product",{products:products})// this {} will call the middleware server.use(ejsLayouts); this middleware will call layout and there body will call product view and browser will take as one page only but in server there are two files layout and product thats what view engine and express does
+        res.render("product",{products:products, userEmail : req.session.userEmail})// this {} will call the middleware server.use(ejsLayouts); this middleware will call layout and there body will call product view and browser will take as one page only but in server there are two files layout and product thats what view engine and express does
     }
 
     // forms code
     getAddForm(req,res){
-      return res.render("new-product",{errorMessage:null});
+      return res.render("new-product",{errorMessage:null, userEmail : req.session.userEmail});
     }
 
     addNewProduct(req,res){
@@ -42,7 +42,7 @@ export default class ProductController{
         ProductModel.addProduct(name,desc,price,imageUrl);
         let products = ProductModel.get();
         console.log(products);
-        return res.render('product',{products:products})
+        return res.render('product',{products:products, userEmail : req.session.userEmail})
     }
 
     getUpdateProductView(req,res,next){
@@ -50,7 +50,7 @@ export default class ProductController{
         const {id} = req.params;
         const productFound = ProductModel.getById(id);
         if(productFound){
-            res.render('update-product',{product: productFound, errorMessage:null});
+            res.render('update-product',{product: productFound, errorMessage:null, userEmail : req.session.userEmail});
         }
         // 2. else return errors.
         else{
@@ -64,7 +64,7 @@ export default class ProductController{
         console.log(imageUrl);
         ProductModel.update(name,desc,price,imageUrl,id);
         let products = ProductModel.get();
-        return res.render('product',{products:products})
+        return res.render('product',{products:products, userEmail : req.session.userEmail})
     }
 
     deleteProduct(req,res){
@@ -76,7 +76,7 @@ export default class ProductController{
         }
         ProductModel.deleteProduct(id);
         let products = ProductModel.get();
-        return res.render('product',{products:products})
+        return res.render('product',{products:products, userEmail : req.session.userEmail})
     }
 }
 

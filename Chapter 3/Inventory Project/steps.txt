@@ -75,19 +75,59 @@ client --> cookies
 http -> stateless
 
 
+// products page gets display we use session so after login only product page should display
+
+use is used for application middleware
+
+npm i express-session
+after installing session
+then use session function which takes object
+{
+    secret: 'SecretKey',
+    resave : flase,
+    saveUninitialized: true,
+    cookie :{
+        secure : false
+    }
+}
+
+logout(req,res){
+        // on log out, destroy the session
+        req.session.destroy((err)=>{
+            if(err){
+                console.log('session destroy err ',err);
+            }else{
+                res.redirect('/login');
+            }
+        })
+        res.clearCookie('lastVisit');
+    }
 
 
+// logout and clearing session
 
 
+// you can create your own cookies --> continue watching in netflix this feature can be stored in cookies
+
+to create cookie first install
+npm i cookie-parser
+
+server.use(cookieParser()); // req.cookies res.cookie
+
+server.use(setLastVisit);
 
 
+export const setLastVisit = (req,res,next)=>{
 
-
-
-
-
-
-
+    // 1. if cookie is set , then add a local variable with last visit time data.
+    if(req.cookies.lastVisit){
+        res.locals.lastVisit = new Date(req.cookies.lastVisit).toLocaleString();
+    }
+    res.cookie('lastVisit',new Date().toISOString(),{
+        maxAge : 2*24*60*1000
+    });
+    next();
+}
 
 
 
