@@ -1,0 +1,11 @@
+mvc is bad
+chapter 4 is about api
+
+mvc is tight coupling
+cotroller --> views 
+
+Ecommerce APIs
+
+Product management
+
+
