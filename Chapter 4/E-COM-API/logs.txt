@@ -1,14 +1,1 @@
-{"level":"info","message":"/api/cartItems?productID=2&quantity=3 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/product/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=11&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=11&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
-{"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}
 {"level":"info","message":"/api/products/rate?UserID=1&productID=1&rating=4.5 - undefined","service":"request-logging"}

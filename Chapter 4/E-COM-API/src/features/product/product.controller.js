@@ -36,18 +36,18 @@ export default class ProductController{
         res.status(200).send(result);
     }
 
-    rateProducts(req,res){
+    rateProducts(req,res,next){
         try{
             
         const userID = req.query.UserID;
         const productID = req.query.productID;
-        const rating = req.querys.rating;
+        const rating = req.query.rating;
   
         ProductModel.rateProduct(userID,productID,rating);
     
         return res.status(200).send('Rating added Successfully');
         }catch(err){
-            console.log("Passing error to middleware");
+            //console.log("Passing error to middleware");
             next(err);
         }
         

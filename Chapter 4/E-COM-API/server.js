@@ -8,7 +8,7 @@ import { basicAuthorizer } from "./src/middleware/basicAuth.middleware.js";
 import jwtAuth from "./src/middleware/jwt.middleware.js";
 import cartRouter from "./src/features/cart/cartItems.routes.js";
 import productRouter from "./src/features/product/product.routes.js";
-import loggerMiddleware from "./src/middleware/logger.middleware.js";
+import loggerMiddleware, { logger } from "./src/middleware/logger.middleware.js";
 import { ApplicationError } from "./src/error-handler/applicationError.js";
 
 // 2. Create server
@@ -72,6 +72,8 @@ server.use((err, req,res,next)=>{
        return  res.status(err.code).send(err.message);
     }
     // server errors
+    let error = 'Server error ' + err;
+    logger.info(error);
     return res.status(500).send("Something went wrong, please try later")
 })
 
