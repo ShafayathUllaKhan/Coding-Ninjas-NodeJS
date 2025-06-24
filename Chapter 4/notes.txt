@@ -9,3 +9,18 @@ Ecommerce APIs
 Product management
 
 
+// All the concepts of rest api project
+
+Folder Structure
+Route configuration
+Creating APIs
+Different API Methods
+Middlewares
+Route parameters
+Query parameters
+Testing api using postman
+Securing Api using jwt token
+Documenting API using swagger
+CORS
+Logging
+Error Handling
