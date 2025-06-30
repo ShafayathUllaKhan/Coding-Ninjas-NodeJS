@@ -1,0 +1,545 @@
+Understanding Data
+
+What is Data?
+Why it is important?
+How to manage it ?
+
+command line with crud operations in mongodb
+
+first follow this step and dont forget
+
+install mongodb and then install mongodb shell
+
+then take application file from mongodb shell and place in bin folder of mongodb
+
+then add the bin location of mongodb in environment variable
+
+then open terminal and type mongosh
+
+and then you will be in mongodb and type command show databases;
+
+test> show databases;
+admin   40.00 KiB
+config  72.00 KiB
+local   40.00 KiB
+
+show dbs;
+
+use bookdb; // this coomand create a database but will not show until there is collection
+
+db.books.insertOne({title:"Da Vinci Code", author:"Dan Brown", year : "2003"}); // this command create a collection and add the document
+
+id is of 12 bytes
+
+4 bytes for timestamp with milliseconds
+5 machine id or machine details
+3 is counter 
+
+bookdb> show collections
+
+bookdb> db.books.insertMany([{title:"To kill a mocking bird", author:"Harper", year : "1997"},{title:"Gamoe of thrones",author:"J.K.Rolling",year:"1998"}]);
+
+
+bookdb> db.books.find();
+
+
+
+[
+  {
+    _id: ObjectId('685bef01c5c809c4ee748a5f'),
+    title: 'Da Vinci Code',
+    author: 'Dan Brown',
+    year: '2003'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a60'),
+    title: 'To kill a mocking bird',
+    author: 'Harper',
+    year: '1997'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a61'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  }
+]
+
+
+
+bookdb> db.books.findOne({author:"Harper"});
+
+
+{
+  _id: ObjectId('685bf0adc5c809c4ee748a60'),
+  title: 'To kill a mocking bird',
+  author: 'Harper',
+  year: '1997'
+}
+
+// difference between find and find One
+
+
+bookdb> db.books.findOne({year:"1997"});
+{
+  _id: ObjectId('685bf0adc5c809c4ee748a60'),
+  title: 'To kill a mocking bird',
+  author: 'Harper',
+  year: '1997'
+}
+bookdb> db.books.find({year:"1997"});
+[
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a60'),
+    title: 'To kill a mocking bird',
+    author: 'Harper',
+    year: '1997'
+  },
+  {
+    _id: ObjectId('685bf1afc5c809c4ee748a62'),
+    title: 'Dragons',
+    author: 'Martin',
+    year: '1997'
+  }
+]
+
+
+// update and delete
+
+// update
+
+bookdb> db.books.updateOne({title:"Dragons"},{$set:{author:"Daneil Brown",year:"2004"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+bookdb> db.books.find();
+[
+  {
+    _id: ObjectId('685bef01c5c809c4ee748a5f'),
+    title: 'Da Vinci Code',
+    author: 'Dan Brown',
+    year: '2003'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a60'),
+    title: 'To kill a mocking bird',
+    author: 'Harper',
+    year: '1997'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a61'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  },
+  {
+    _id: ObjectId('685bf1afc5c809c4ee748a62'),
+    title: 'Dragons',
+    author: 'Daneil Brown',
+    year: '2004'
+  }
+]
+
+bookdb> db.books.updateMany({author:"Harper"},{$set:{author:"Daneil Brown",year:"2004"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+bookdb> db.books.find();
+[
+  {
+    _id: ObjectId('685bef01c5c809c4ee748a5f'),
+    title: 'Da Vinci Code',
+    author: 'Dan Brown',
+    year: '2003'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a60'),
+    title: 'To kill a mocking bird',
+    author: 'Daneil Brown',
+    year: '2004'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a61'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  },
+  {
+    _id: ObjectId('685bf1afc5c809c4ee748a62'),
+    title: 'Dragons',
+    author: 'Daneil Brown',
+    year: '2004'
+  },
+  {
+    _id: ObjectId('685bf486c5c809c4ee748a63'),
+    title: 'To kill a mocking bird',
+    author: 'Daneil Brown',
+    year: '2004'
+  },
+  {
+    _id: ObjectId('685bf486c5c809c4ee748a64'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  }
+]
+
+$set is operator
+
+// delete
+
+
+bookdb> db.books.deleteOne({author:"Daneil Brown"});
+{ acknowledged: true, deletedCount: 1 }
+bookdb> db.books.find();
+[
+  {
+    _id: ObjectId('685bef01c5c809c4ee748a5f'),
+    title: 'Da Vinci Code',
+    author: 'Dan Brown',
+    year: '2003'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a61'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  },
+  {
+    _id: ObjectId('685bf1afc5c809c4ee748a62'),
+    title: 'Dragons',
+    author: 'Daneil Brown',
+    year: '2004'
+  },
+  {
+    _id: ObjectId('685bf486c5c809c4ee748a63'),
+    title: 'To kill a mocking bird',
+    author: 'Daneil Brown',
+    year: '2004'
+  },
+  {
+    _id: ObjectId('685bf486c5c809c4ee748a64'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  }
+]
+bookdb> db.books.deleteMany({author:"Daneil Brown"});
+{ acknowledged: true, deletedCount: 2 }
+bookdb> db.books.find();
+[
+  {
+    _id: ObjectId('685bef01c5c809c4ee748a5f'),
+    title: 'Da Vinci Code',
+    author: 'Dan Brown',
+    year: '2003'
+  },
+  {
+    _id: ObjectId('685bf0adc5c809c4ee748a61'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  },
+  {
+    _id: ObjectId('685bf486c5c809c4ee748a64'),
+    title: 'Gamoe of thrones',
+    author: 'J.K.Rolling',
+    year: '1998'
+  }
+]
+bookdb>
+
+
+mongodb client software
+
+import { MongoClient } from "mongodb";
+
+const url = "mongodb://localhost:27017/ecomdb";
+
+const connectToMongoDB = ()=>{
+    MongoClient.connect(url).then((client)=>{
+        console.log("Mongodb is connected");
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+
+export default connectToMongoDB;
+
+
+// hashing password
+
+// learn hashing of password
+
+// using env file
+
+// modifying _id
+
+id = first 4 bytes timestamp, 3 bytes machine identifier , 2 bytes process id, 3 bytes is counter
+
+1. Counter collection (_id:"cartitemId", value:0)
+
+2. while adding cart items, increament the counter and then use counter value as id to cartitem document
+
+
+// Understanding Indexes
+
+single field Indexes
+compound indexes
+text indexes
+
+slower write quries
+
+
+const createIndexes = async(db)=>{
+    try{
+        await db.collection("products").createIndex({
+            price:1
+        });
+        await db.collection("products").createIndex({
+            name:1,category:-1
+        });
+         await db.collection("products").createIndex({
+            desc:"text"
+        });
+        console.log('Indexes are created');
+    }catch(err){
+        console.log('err',err);
+    }
+}
+
+// indexs make write operation slower why if you insert any document it has to update the index and store the document in index storage and in collection so this operation make the write operation slower
+
+// MongoDB Operators
+
+comparison Operators
+
+$gte 
+$lte 
+$in
+
+Logical Operators
+
+$and
+$not
+$nor
+$or
+
+Projection Operators
+
+ return await collection.find(filterExpression).project({name:1,price:1,_id:0,ratings:1}).toArray();
+
+// slice operator
+ return await collection.find(filterExpression).project({name:1,price:1,_id:0,ratings:{
+                        $slice : 1
+                    }}).toArray();// slice can be part of find or projection(1 is return first value of array -1 one will return last value of the array)
+
+
+// aggregation pipeline
+
+async averageProductPricePerCategory(){
+        try{
+
+            const db = getDB();
+            return await db.collection(this.collection).aggregate([
+                {
+                    // Stage 1: Get average price per category
+                    $group:{
+                        _id:"$category",
+                        averagePrice : {
+                            $avg : "$price"
+                        }
+                    }
+                }
+            ]).toArray();
+
+        }catch(err){
+            console.log(err);
+            throw new ApplicationError("Something went wrong with database", 500)
+        }
+    }
+
+
+2. Find the average rating of a products
+
+db.products.aggregate([
+  {
+    $unwind : "$ratings"
+  },
+  {
+    $group:{
+      _id:"$name",
+      averageRating:{
+        $avg:"$ratings.rating"
+      }
+    }
+  }
+]);
+
+
+// find the rating count
+
+ db.products.aggregate([
+... {
+... $project:{ name: 1, countOfRating : {
+... $cond : { if:{$isArray : "$ratings"},
+... then:{$size : "$ratings"}, else : 0}}}}]);
+[
+  {
+    _id: ObjectId('685edef8b83b05bd7f358530'),
+    name: 'Product 1',
+    countOfRating: 1
+  },
+  {
+    _id: ObjectId('685edf3dc772114d43717de2'),
+    name: 'Product 1',
+    countOfRating: 0
+  },
+  {
+    _id: ObjectId('685ee9a6b0da1b82e62116c0'),
+    name: 'Product 3',
+    countOfRating: 0
+  },
+  {
+    _id: ObjectId('68613ba6360e0ad9fc06e875'),
+    name: 'Product 4',
+    countOfRating: 0
+  }
+]
+ecomdb>
+
+
+db.products.aggregate([
+  // 1. Project name of product, and countOfRating
+{
+  $project:{ name: 1, countOfRating : {
+  $cond : { if:{$isArray : "$ratings"},
+  then:{$size : "$ratings"}, else : 0}}}},{
+
+    // Stage 2: Sort the collection
+    $sort : {
+      countOfRating:1 // 1 is ascending and -1 is descending
+    }
+}]);
+
+
+// descending
+
+ db.products.aggregate([ /* 1. Project name of product, and countOfRating*/ { $project: { name: 1, countOfRating: { $cond: { if: { $isArray: "$ratings" }, then: { $size: "$ratings" }, else: 0 } } } }, { /* Stage 2: Sort the collection*/ $sort: { countOfRating: -1 } }]);
+[
+  {
+    _id: ObjectId('685edef8b83b05bd7f358530'),
+    name: 'Product 1',
+    countOfRating: 1
+  },
+  {
+    _id: ObjectId('685edf3dc772114d43717de2'),
+    name: 'Product 1',
+    countOfRating: 0
+  },
+  {
+    _id: ObjectId('685ee9a6b0da1b82e62116c0'),
+    name: 'Product 3',
+    countOfRating: 0
+  },
+  {
+    _id: ObjectId('68613ba6360e0ad9fc06e875'),
+    name: 'Product 4',
+    countOfRating: 0
+  }
+]
+
+
+// one one rating
+
+
+ db.products.aggregate([ /* 1. Project name of product, and countOfRating*/ 
+ { $project: 
+ { name: 1, countOfRating: { $cond: { if: { $isArray: "$ratings" }, then: { $size: "$ratings" }, else: 0 } } } },
+  { /* Stage 2: Sort the collection*/ $sort: { countOfRating: -1 } }
+ ,
+ {
+  $limit: 1
+ }]);
+
+ // Transactions in mongodb
+
+db.cartItems.aggregate([  
+    { $match: 
+      { userID: ObjectId(685e96dfb3f72732a0825793) } 
+    }, 
+    { $lookup: 
+      { from: "products", localField: "productID", foriegnFields: "_id", as: "productInfo" } 
+      }] )
+
+db.cartItems.aggregate([ 
+  { $match: 
+  { userID: ObjectId("685e96dfb3f72732a0825793") } }, 
+  { $lookup: 
+  { from: "products", localField: "productID", foreignField: "_id", as: "productInfo" } },
+  {$unwind:"$productInfo"},
+  {$addFields:
+  {"totalAmount":
+  {$multiply:["$productInfo.price","$quantity"]}}}] );
+
+
+mongodb file location
+C:\Program Files\MongoDB
+
+nodejs 
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js
+
+nvm
+C:\
+
+
+C:\Users\Admin>net stop MongoDB
+System error 5 has occurred.
+
+Access is denied.
+
+
+C:\Users\Admin>mkdir C:\mongodb-data\rs0
+
+mongod --dbpath "C:\mongodb-data\rs0" --replSet rs0
+
+
+// commands on replica set
+
+● Firstly, open the command prompt as Administrator.
+
+● Get inside the Mongo shell by using the command: mongosh
+
+Then we need to stop the running server by using the command:
+db.shutdownServer()
+
+Now exit the Mongo shell using the command: exit
+
+You can now start the new “mongod” relocation server using the below
+command:
+mongod —replSet rs0 –dbpath “C:\Program
+Files\MongoDB\Server\7.0\data”
+
+–dbpath “C:\Program
+Files\MongoDB\Server\7.0\data” standalone
+
+—replSet rs0 --> replication set
+
+
+
+Note: dbpath in the above command might vary. “rs0” is the replica set
+name, and dbpath is the location where replica data is going to be. DON'T
+CLOSE THIS RUNNING COMMAND LINE!!!
+● Now, your replica server is running. Now you can open in a new Mongo shell
+and start using rs0 by typing in the command:
+rs.initiate()
+rs.status()
+

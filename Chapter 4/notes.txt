@@ -24,3 +24,142 @@ Documenting API using swagger
 CORS
 Logging
 Error Handling
+
+
+//coding ninjas node js part 1 sylabus
+
+// Getting Started with Nodejs
+
+Introduction to Node.js
+Why Is Node.js Popular?
+Runtimes
+Setting Up Node.js
+Blocking and Non-Blocking Code
+How Node.js Works?
+Understanding Libuv
+What is a Server?
+Creating an HTTP server
+Handling Multiple Requests
+Returning HTML as Response
+
+// Modules in Nodejs
+
+Understanding Module
+ES6 Module
+Types of Modules
+Package Managers and NPM
+Global Installation using NPM
+Understanding package.json
+Understanding versions
+Removing mjs extension
+Understanding nvm
+Reading Command Line Input
+File System Module - 1
+File System Module - 2
+File System Module - 3
+Path Module
+
+// Exploring More Modules
+Debugging Node.js
+Debugging in VS Code
+Email in NodeJS
+Events in Node.js
+Testing API using Postman
+res.end() Method
+Creating Custom Events
+Advantages of Event-Driven Architecture
+
+// Getting Started with Express
+What is Express?
+Creating Server using Express
+How Express Works? 
+More on Middlewares
+Types of Requests
+HTTP Headers and Status Codes
+Serving HTML Pages
+
+// Model View Controller 1
+Getting Started with Web Development
+Understanding MVC
+Understanding Project
+Creating View
+Creating Controller
+Creating Model
+View Engine
+Creating Layout
+
+// Model View Controller 2
+Working with Forms
+Parsing Data
+Validating Data
+Validation Middleware
+Using Express Validator
+Fix Validation Errors
+Updating Product
+Submit Update Form (Add debugging)
+Deleting Data
+Confirmation before deletion
+Styling Views
+
+// File, Upload, Session and Cookies
+File Uploading - 1
+File Uploading - 2
+Understanding Session
+Registration Page
+Login Page
+Securing Application
+Logout and Clearing Session
+Understanding Cookie
+Creating Cookie
+Debugging Cookie Issue
+Deleting Cookie
+
+// E-comm Project Using REST API
+Understanding API
+Understanding REST
+Applications of REST
+Getting started with API Project
+Creating Folder Structure 
+Setting Up Routes For Product
+Product Controller
+Understanding POST request
+Add Product API
+Get one Product
+Filter Products
+
+// Securing APIs
+Understanding Security
+User APIs
+Testing User APIs
+Basic Authentication
+Understanding JWT 
+JWT Authentication - 1
+JWT Authentication - 2
+
+// Adding More features to E-com App
+Rate Products
+Testing Rate API
+Adding Cart Feature
+Testing Cart Feature
+Deleting Cart Item
+API Documentation
+Using Swagger
+Testing Swagger
+Swagger 3.0
+Handling 404
+CORS
+CORS using headers
+CORS using library
+
+// Handling Errors
+Creating Logger Middleware
+Using Middleware Logger
+Using winston logger
+Error Handling in Express
+Application-Level Error Handling
+Customizing Error Handling Middleware
+Summarizing Project
+
+// Getting Started with Databases
+Understanding Data
+
