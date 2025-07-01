@@ -1,0 +1,124 @@
+Products
+Get Products
+Add a Products
+Get one Product
+Rate product 
+Filter Product
+
+
+
+user controller
+sign up - email, name, password , typeofuser(customer, seller)
+sign in - (email, password)
+
+
+
+understanding POST request
+
+types of authentication
+
+Basic authentication :- requires users credentials on each request.
+
+API Keys :- API Keys are provoded by signing up users on developer portals.
+
+OAuth :- Third-party app integration.
+
+JWT :- Creates a reusable token with option to refresh.
+
+
+Jwt process
+npm i jsonwebtoken
+
+openapi
+cowin api swagger
+
+swagger
+npm i swagger-ui-express
+
+create swagger.json
+
+// handling 404
+
+// cors
+
+// CORS policy configuration
+server.use((req,res,next)=>{
+    res.header('Access-Control-Allow-Origin','*');//http://localhost:3200
+    res.header('Access-Control-Allow-Headers', '*');// 'Content-Type, Authorization'
+    res.header('Access-Control-Allow-Methods', '*');
+    // return ok for preflight request.
+    if(req.method == "OPTIONS"){
+        return res.sendStatus(200);
+    }
+    next();
+})
+
+// cors library
+
+npm i cors
+
+var corsOptions = {
+    origin:'http://localhost:3200' // client port number shoulde be there
+}
+
+// cors library
+server.use(cors(corsOptions));
+
+// logger middleware
+
+import fs from 'fs';
+
+const fsPromise = fs.promises;
+
+async function log(logData) {
+    try{
+        logData = new Date().toString()+ '. Log Data: ' + logData;
+        logData = '\n' + logData;
+        await fsPromise.appendFile("log.txt", logData);
+    }catch(err){
+        console.log(err);
+    } 
+}
+
+const loggerMiddleware = async (req,res,next)=>{
+    // 1. Log request body.
+    if(!req.url.includes('signin')){
+         const logData = `${req.url} - ${JSON.stringify(req.body)}`;
+        await log(logData);
+        next();
+    }
+    next();
+   
+}
+
+export default loggerMiddleware;
+
+
+
+// Using winston logger
+
+
+const logger = winston.createLogger({
+    level:'info',
+    format: winston.format.json(),
+    defaultMeta : {service : 'request-logging'},
+    transports:[
+        new winston.transports.File({
+            filename : 'logs.txt'
+        })
+    ]
+});
+
+const loggerMiddleware = async (req,res,next)=>{
+    // 1. Log request body.
+    if(!req.url.includes('signin')){
+         const logData = `${req.url} - ${JSON.stringify(req.body)}`;
+        //await log(logData);
+        logger.info(logData);
+
+    }
+    next();
+   
+}
+
+

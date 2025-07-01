@@ -1,0 +1,52 @@
+// mongoose
+
+ODM(Object data model);
+Better Structure
+Validations
+More controls using middlewares
+Rich API
+
+// connecting using mongoose
+
+npm i mongoose
+
+
+export const connectUsingMongoose = ()=>{
+    try{
+        mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
+            console.log("Mongodb using mongoose is connected");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }catch(err){
+
+    }
+}
+
+
+Schema
+
+export const productSchema = new mongoose.Schema({
+    productID:{type:mongoose.Schema.Types.ObjectId, ref:'Product'},
+    userID:{type:mongoose.Schema.Types.ObjectId, ref:'User'},
+    quantity: Number
+})
+
+User Operations
+
+password reset
+
+Validations in Mongoose
+
+Relationships in mongoose
+
+one to one --> cartitems
+one to many -> reviews 
+many to many --> categories
+
+
+Multiple references
+
+
+
+
