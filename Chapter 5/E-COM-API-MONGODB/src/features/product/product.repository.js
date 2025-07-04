@@ -57,7 +57,7 @@ export class ProductRepository{
 
     }
 
-     async filter(minPrice,categories){
+     async filter(minPrice,maxPrice,categories){
         try{        
                     // 1.Get the database
                     const db = getDB();
@@ -71,19 +71,28 @@ export class ProductRepository{
                         filterExpression.price = {$gte : parseFloat(minPrice)}
                     }
 
-                    //  if(maxPrice){
-                    //     filterExpression.price = {...filterExpression.price, $lte : parseFloat(maxPrice)}
-                    // }
+                     if(maxPrice){
+                        filterExpression.price = {...filterExpression.price, $lte : parseFloat(maxPrice)}
+                    }
+           
 
                     // ['Cat1',Cat2]
+
                     categories = JSON.parse(categories.replace(/'/g,'"'));
 
                      if(categories){
+                      
                         filterExpression = {$or:[{category:{$in:categories}},filterExpression]};
-                        
-                    }
+                
+                        // filterExpression = {
+                        //              ...filterExpression,  category: { $in: categories },
 
-                    return await collection.find(filterExpression).project({name:1,price:1,_id:0,ratings:{
+                        // };
+                 
+                    }
+                    
+                   
+                    return await collection.find(filterExpression).project({name:1,price:1,_id:0,category:1,ratings:{
                         $slice : 1
                     }}).toArray();// slice can be part of find or projection(1 is return first value of array -1 one will return last value of the array)
                     }catch(err){

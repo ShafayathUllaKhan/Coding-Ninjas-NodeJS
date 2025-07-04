@@ -1,0 +1,3 @@
+long pooling sending request every 5 sec
+send data without any req
+server have persistent connection with the client

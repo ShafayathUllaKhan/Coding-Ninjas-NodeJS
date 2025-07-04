@@ -1,0 +1,7 @@
+npm install -g grunt-cli
+npm i grunt
+
+
+install plugins for variuos operation
+npm install grunt-contrib-uglify --save-dev
+npm install grunt-contrib-cssmin --save-dev
