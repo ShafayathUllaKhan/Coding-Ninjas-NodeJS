@@ -38,3 +38,13 @@
 {"level":"info","message":"/api/likes?id=685edef8b83b05bd7f358530&type=Product - undefined","service":"request-logging"}
 {"level":"info","message":"/api/likes/ - {\"type\":\"Product\",\"id\":\"6863f90b60feb6b99c81edd0\"}","service":"request-logging"}
 {"level":"info","message":"/api/likes?id=685edef8b83b05bd7f358530&type=Product - undefined","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Password\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayathulla@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayath@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayat@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayat@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayat@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayat@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayat@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath@gmail.com\",\"password\":\"Shafayat@\",\"type\":\"Customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Shafayath\",\"email\":\"shafayath1998@gmail.com\",\"password\":\"Shafayat@\",\"type\":\"Customer\"}","service":"request-logging"}

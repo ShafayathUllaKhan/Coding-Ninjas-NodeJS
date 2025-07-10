@@ -29,6 +29,7 @@ export class UserController{
         try{
             // 1. find user by email
             const user = await this.userRepository.findByEmail(req.body.email);
+            console.log('user' , user);
             
             if(!user){
                  return res.status(400).send('Incorrect Credential');

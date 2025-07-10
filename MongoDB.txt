@@ -1,0 +1,153 @@
+
+Mongodb course
+
+db.createCollection('data');
+show collections;
+db.data.drop();
+db.dropDatabase();
+
+// Insert Operations
+
+// ordered
+
+students> db.data.insertMany([{name: "shafayath"},{lastname:"khan",_id : ObjectId('686e54065b38dc0d1e748a60')},{name:"khan"}],{ordered: false});
+
+// find and findOne
+// importing json in Mongodb
+
+import
+mongoimport C:\Users\Admin\Downloads\files\sales.json -d shop -c sales --jsonArray
+
+export 
+mongoexport -d shop -c sales -o C:\Users\Admin\Downloads\files\salestest.json
+
+// comparison operators
+
+$eq
+$ne 
+$gt 
+$gte 
+$lt 
+$lte 
+$in 
+$nin 
+
+// cursors
+
+cursor methods
+
+count()
+limit()
+skip()
+sort()
+
+db.products.find().count();
+db.products.find().limit(5);
+db.products.find().limit(5).skip(2);
+db.products.find().limit(3).sort({price : 1}) // 1 is for ascending and -1 is for decending
+
+logical operators
+
+$and $or $not $nor 
+
+// note if you give a single object with multiple properties the mongodb implicitly act as and operator
+
+db.products.find({$and :[{price : {$gt : 100}},{price : {$lt : 1000}}]});
+
+// or operator
+
+db.products.find({$or :[{price : {$gt : 100}},{price : {$lt : 1000}}]});
+
+// nor operator
+
+db.products.find({$nor :[{price : {$gt : 100}},{price : {$lt : 1000}}]}); // whatever condition you have given that will not work like the codition you have given that condition will work like notin operator 
+
+// not operator
+
+db.products.find({'price':{$not: {$eq:100}}}); 
+
+
+// complex expression
+
+db.sales.find({$expr : {$gt : [{$multiply : ["$quantity","$price"]},"$targetPrice"]}});
+// $expr
+// $add
+// $subtract
+//$multiply
+
+
+// Elements operator
+
+$exists
+$type 
+$size 
+
+db.products.find({price : {$exists : true}}).count();
+db.products.find({price : {$exists : true}}).limit(5);
+db.products.find({price : {$exists : true}}).skip(1);
+db.products.find({price:{$exists: true}}).sort({price : 1});
+db.products.find({price : {$exists : true},price: {$gt : 1250}});
+
+
+// $type
+
+db.products.find({price : {$type: 'number'}});
+
+// $size
+
+db.products.find({colors : {$size:3}});
+
+// project 
+db.products.find({},{_id:0,name:1});
+
+// in projections you cant do 0 1 0 it should be 1 1 or 0 0
+
+
+// embedded data
+
+db.comments.find({comments.user:'Lily'});
+
+db.comments.find({'metadata.views' : {$gt : 1200}});
+
+db.comments.find({'comments.user': 'Henry','metadata.likes':{$gt:50}});
+
+// $all and $elemMatch
+
+db.comments.find({'comments.user': {$eq : ['Alice','Vinod']}});
+
+db.comments.find({'comments.user': {$all : ['Alice','Vinod']}});
+
+
+db.comments.find({'comments':{$elemMatch : {'user':'Vinod','text':'Thanks for sharing'}}});
+
+
+// updateOne() and updateMany()
+
+
+// removing and renaming fields
+
+db.products.updateOne({price:123},{$rename : {'isFeatured' : 'isFeature'}});
+
+
+db.products.updateOne({price:123},{$unset :{isFeature: 1}});
+
+// updating arrays and Embedded Documents
+
+
+// push 
+
+// pop
+
+// $ is a positional operator
+
+// deleteOne and deleteMany
+
+
+// indexes 
+
+db.products.find().explain();
+
+db.products.find().explain('executionStats');
+
+
+

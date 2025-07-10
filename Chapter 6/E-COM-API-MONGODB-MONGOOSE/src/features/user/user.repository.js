@@ -37,7 +37,7 @@ export class UserRepository{
 
     async findByEmail(email,password){
                 try{        
-                
+              
                 return await UserModel.findOne({email});
                 }catch(err){
                     throw new ApplicationError("Something went wrong",500);
