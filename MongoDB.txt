@@ -149,5 +149,67 @@ db.products.find().explain();
 
 db.products.find().explain('executionStats');
 
+db.products.find({name :"Air Fryer"}).explain('executionStats');
+
+db.products.getIndexes();
+
+db.products.dropIndex({'price': 1});
+
+db.users.createIndex({email : 1},{unique : true});
 
 
+db.users.createIndex({email : "text"});
+
+db.users.find({$text:{$search:"keyword"}});
+
+// Aggregation in mongodb
+
+$match
+$group
+
+
+db.products.aggregate([ {$match:{name :"Air Fryer"}}]);
+
+
+db.products.aggregate([{$group :{_id : "$company",totalProducts : {$sum : 1}}}]);
+
+db.products.aggregate([{$group :{_id : "$company",totalProducts : {$sum : "$price"}}}]);
+
+$sort
+db.products.aggregate([{$group :{_id : "$company",totalProducts : {$sum : "$price"}}},
+{
+    $sort :{
+        totalProducts : 1
+    }
+}
+
+]);
+
+$project
+
+db.products.aggregate([{$project : {price : 1,_id : 0}}]);
+
+project is diiferent from find project in aggregate project we can do operations like sum multiply etc
+
+// push
+
+db.products.aggregate([{$match : {price : {$gt: 1200}}},{ $group:{_id : '$price', allColors:{$push : '$colors'}}
+}])
+
+db.products.aggregate([{$unwind : '$colors'},{$match : {price : {$gt: 1200}}},{ $group:{_id : '$price', allColors:{$push : '$colors'}}
+}])
+
+
+// add To Set
+
+db.products.aggregate([{$unwind : '$colors'},{$match : {price : {$gt: 1200}}},{ $group:{_id : '$price', allColors:{$addToSet : '$colors'}}
+}])
+
+
+// $size gives the size of the embedded array and does not work in $group
+
+// $limit
+
+// $skip
+
+// $filter 

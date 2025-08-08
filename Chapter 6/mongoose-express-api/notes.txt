@@ -1,0 +1,54 @@
+Thanks for sharing all your schema files! Here's a complete tabular relationship chart showing how all your Mongoose models (User, Profile, Post, Group) are related:
+
+📊 Mongoose Relationship Diagram
+Model	Field	Type	Refers To	Relationship Type	Direction	Notes
+User	profile	ObjectId	Profile	One-to-One	User → Profile	Direct reference from User
+Profile	user	ObjectId	User	One-to-One	Profile → User	Reverse ref, marked unique to enforce 1-1
+User	groups	[ObjectId]	Group	Many-to-Many	User → Groups	A user can belong to multiple groups
+Group	members	[ObjectId]	User	Many-to-Many	Group → Users	A group contains multiple users
+Post	author	ObjectId	User	One-to-Many	Post → User	Each post belongs to one user
+User	postCount	virtual	Post	One-to-Many (virtual)	User ← Posts	Virtual count of posts written by the user
+
+🧠 Notes:
+One-to-One (User–Profile):
+
+Both User.profile and Profile.user exist.
+
+Profile.user has unique: true to enforce a 1–1 mapping.
+
+Many-to-Many (User–Group):
+
+Users can be in multiple groups (User.groups).
+
+Groups can have multiple members (Group.members).
+
+This is bidirectional and symmetrical.
+
+One-to-Many (User–Post):
+
+Each post has one author (Post.author).
+
+Users can write many posts.
+
+postCount virtual on User gives a post count using populate().
+
+📘 Example Usages:
+Count a User’s Posts
+js
+
+const user = await User.findById(userId).populate('postCount');
+console.log(user.postCount);
+Find all Users in a Group
+js
+Copy
+Edit
+const group = await Group.findById(groupId).populate('members');
+Get User with Profile + Groups
+js
+
+const user = await User.findById(userId)
+  .populate('profile')
+  .populate('groups');
+Enforce profile <=> user integrity:
+Make sure only one side (User.profile or Profile.user) is used to create the relation consistently.
+
